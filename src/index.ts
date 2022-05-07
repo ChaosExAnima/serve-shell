@@ -1,15 +1,15 @@
-import { runWithPrefix, withPrefix } from "./utils";
+import { runWithPrefix, withPrefix } from './utils';
 
-const save = withPrefix("out");
+const save = withPrefix('out');
 
 async function pia() {
 	const [state, region, ip] = await runWithPrefix(
-		"piactl get",
-		"connectionstate",
-		"region",
-		"vpnip"
+		'piactl get',
+		'connectionstate',
+		'region',
+		'vpnip',
 	);
-	await save("pia.json", { state, region, ip });
+	await save('pia.json', { state, region, ip });
 }
 
 pia();
