@@ -1,5 +1,5 @@
 import { $, argv, chalk } from 'zx';
-import { error, runWithPrefix, withPrefix } from './utils';
+import { runWithPrefix, withPrefix } from './utils';
 
 const save = withPrefix('out');
 
@@ -20,8 +20,12 @@ async function main() {
 	try {
 		await Promise.all([pia()]);
 		console.log(chalk.yellow('✅ updated files'));
-	} catch (err) {
-		error(err);
+	} catch (error) {
+		let message = 'Unknown';
+		if (error instanceof Error) {
+			message = error.message;
+		}
+		console.log(chalk.red('🆘 ERROR:', message));
 	}
 }
 

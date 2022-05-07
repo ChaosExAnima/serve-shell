@@ -11,14 +11,6 @@ export function runWithPrefix(
 	return runAll(...args.map((arg) => `${prefix} ${arg}`));
 }
 
-export function error(error: unknown) {
-	let message = 'Unknown';
-	if (error instanceof Error) {
-		message = error.message;
-	}
-	console.log(chalk.red('ERROR: ', message));
-}
-
 export async function toFile(
 	path: string,
 	input: Record<string, ProcessOutput>,
