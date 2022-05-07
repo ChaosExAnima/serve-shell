@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "watch",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "yarn watch"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "yarn build"
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"group": "none",
+			"problemMatcher": [],
+			"label": "yarn start"
+		}
+	]
+}
