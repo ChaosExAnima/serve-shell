@@ -25,4 +25,5 @@ jobs:
               with:
                   artifacts: 'build.js'
                   artifactContentType: 'text/javascript'
-                  tag: '$GITHUB_SHA'
+                  tag: latest
+                  commit: ${{github.sha}}
