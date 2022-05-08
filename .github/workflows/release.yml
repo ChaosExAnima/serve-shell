@@ -26,3 +26,4 @@ jobs:
       with:
         artifacts: 'build.js'
         artifactContentType: 'text/javascript'
+        tag: latest
