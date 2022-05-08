@@ -1,4 +1,4 @@
-import { $, chalk, fs, ProcessOutput } from 'zx';
+import { $, fs, ProcessOutput } from 'zx';
 
 export function runAll(...args: string[]): Promise<ProcessOutput[]> {
 	return Promise.all(args.map((arg) => $`${arg.split(' ')}`));
@@ -11,20 +11,27 @@ export function runWithPrefix(
 	return runAll(...args.map((arg) => `${prefix} ${arg}`));
 }
 
+export function processToMap(
+	output: Record<string, ProcessOutput>,
+): Record<string, string> {
+	return Object.fromEntries(
+		Object.entries(output).map(([key, value]) => [
+			key,
+			value.toString().trim(),
+		]),
+	);
+}
+
 export async function toFile(
 	path: string,
-	input: Record<string, ProcessOutput>,
+	output: Record<string, any>,
 ): Promise<void> {
-	const stringValues = Object.entries(input).map(([key, value]) => [
-		key,
-		value.toString().trim(),
-	]);
-	await fs.outputJSON(path, Object.fromEntries(stringValues), {
+	await fs.outputJSON(path, output, {
 		spaces: '\t',
 	});
 }
 
 export function withPrefix(dir: string) {
-	return (path: string, input: Record<string, ProcessOutput>) =>
+	return (path: string, input: Record<string, any>) =>
 		toFile(`${dir}/${path}`, input);
 }
