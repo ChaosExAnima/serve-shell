@@ -20,6 +20,7 @@
 	},
 	"scripts": {
 		"build": "esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=build.js",
+		"build:prod": "yarn build --minify --legal-comments=none",
 		"watch": "yarn build --watch",
 		"start": "node build.js",
 		"prestart": "yarn build",
